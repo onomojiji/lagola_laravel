@@ -45,10 +45,10 @@
                     <div class="collapse menu-dropdown" id="agences">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="#" class="nav-link">{{__("Ajouter une agence")}}</a>
+                                <a href="{{route("companies.create")}}" class="nav-link">{{__("Ajouter une agence")}}</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">{{__("Lister les agences")}}</a>
+                                <a href="{{route("companies.index")}}" class="nav-link">{{__("Lister les agences")}}</a>
                             </li>
                         </ul>
                     </div>
@@ -119,10 +119,10 @@
                     <div class="collapse menu-dropdown" id="users">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="#" class="nav-link">{{__("Ajouter un utilisateur")}}</a>
+                                <a href="{{route("users.create")}}" class="nav-link">{{__("Ajouter un utilisateur")}}</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">{{__("Lister les utilisateurs")}}</a>
+                                <a href="{{route("users.index")}}" class="nav-link">{{__("Lister les utilisateurs")}}</a>
                             </li>
                         </ul>
                     </div>
