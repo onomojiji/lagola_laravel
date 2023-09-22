@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     // get all list of users
     public function index(){
-        $users = User::orderBy("name")->get();
+        $users = User::orderBy("name")->orderBy("active")->orderBy("admin")->get();
         return view("users.index", ["users" => $users]);
     }
 

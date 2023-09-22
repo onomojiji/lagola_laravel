@@ -61,10 +61,10 @@
                     <div class="collapse menu-dropdown" id="sellers">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="#" class="nav-link">{{__("Ajouter un(e) vendeur(se)")}}</a>
+                                <a href="{{route("sellers.create")}}" class="nav-link">{{__("Ajouter un(e) vendeur(se)")}}</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">{{__("Lister les vendeurs(ses)")}}</a>
+                                <a href="{{route("sellers.index")}}" class="nav-link">{{__("Lister les vendeurs(ses)")}}</a>
                             </li>
                         </ul>
                     </div>

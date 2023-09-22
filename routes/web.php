@@ -37,6 +37,15 @@ Route::middleware(["auth"])->prefix('admin')->group(function (){
         Route::post("companies/update/{user_id}", 'update')->name("companies.update");
     });
 
+    // sellers routes
+    Route::controller(\App\Http\Controllers\Admin\SellerController::class)->group(function (){
+        Route::get("sellers/list", 'index')->name("sellers.index");
+        Route::get("sellers/create", 'create')->name("sellers.create");
+        Route::get("sellers/edit/{user_id}", 'edit')->name("sellers.edit");
+        Route::post("sellers/store", 'store')->name("sellers.store");
+        Route::post("sellers/update/{user_id}", 'update')->name("sellers.update");
+    });
+
 });
 
 require __DIR__.'/auth.php';
