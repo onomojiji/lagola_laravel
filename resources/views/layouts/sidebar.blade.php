@@ -83,10 +83,10 @@
                                 <div class="collapse menu-dropdown" id="categories">
                                     <ul class="nav nav-sm flex-column">
                                         <li class="nav-item">
-                                            <a href="#" class="nav-link">{{__("Ajouter une catégorie")}}</a>
+                                            <a href="{{route("categories.create")}}" class="nav-link">{{__("Ajouter une catégorie")}}</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="#" class="nav-link">{{__("Lister les catégories")}}</a>
+                                            <a href="{{route("categories.index")}}" class="nav-link">{{__("Lister les catégories")}}</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -98,10 +98,10 @@
                                 <div class="collapse menu-dropdown" id="products">
                                     <ul class="nav nav-sm flex-column">
                                         <li class="nav-item">
-                                            <a href="#" class="nav-link">{{__("Ajouter un produit")}}</a>
+                                            <a href="{{route("products.create")}}" class="nav-link">{{__("Ajouter un produit")}}</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="#" class="nav-link">{{__("Lister les produits")}}</a>
+                                            <a href="{{route("products.index")}}" class="nav-link">{{__("Lister les produits")}}</a>
                                         </li>
                                     </ul>
                                 </div>

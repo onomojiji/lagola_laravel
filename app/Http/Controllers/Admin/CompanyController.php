@@ -33,6 +33,6 @@ class CompanyController extends Controller
             'address' => $request->address
         ]);
 
-        return redirect()->route('companies.create')->with("success", "Agence enregistré avecsuccès.");
+        return redirect()->back()->with("success", "Agence enregistré avecsuccès.");
     }
 }

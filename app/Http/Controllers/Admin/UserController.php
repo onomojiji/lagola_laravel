@@ -41,6 +41,6 @@ class UserController extends Controller
             'admin' => 1
         ]);
 
-        return redirect()->route('users.create')->with("success", "Utilisateur enregistré avecsuccès.");
+        return redirect()->back()->with("success", "Utilisateur enregistré avecsuccès.");
     }
 }

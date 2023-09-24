@@ -77,6 +77,6 @@ class SellerController extends Controller
             "cni" => $request->cni,
         ]);
 
-        return redirect()->route('sellers.create')->with("success", "Vendeur(se) enregistré avecsuccès.");
+        return redirect()->back()->with("success", "Vendeur(se) enregistré avecsuccès.");
     }
 }
