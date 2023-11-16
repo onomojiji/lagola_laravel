@@ -40,15 +40,18 @@
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#agences" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="agences">
-                        <i class="lab la-fonticons"></i> <span> {{__("Agences")}} </span>
+                        <i class="lab la-fonticons"></i> <span> {{__("Kiosques")}} </span>
                     </a>
                     <div class="collapse menu-dropdown" id="agences">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="{{route("companies.create")}}" class="nav-link">{{__("Ajouter une agence")}}</a>
+                                <a href="{{route("companies.create")}}" class="nav-link">{{__("Ajouter un kiosque")}}</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{route("companies.index")}}" class="nav-link">{{__("Lister les agences")}}</a>
+                                <a href="{{route("products.getInCompany")}}" class="nav-link">{{__("Ravitaillement")}}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route("companies.index")}}" class="nav-link">{{__("Lister les kiosques")}}</a>
                             </li>
                         </ul>
                     </div>

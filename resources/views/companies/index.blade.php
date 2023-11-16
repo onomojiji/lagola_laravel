@@ -1,11 +1,11 @@
 @extends('layouts.master')
 @section('title')
-    {{__("Liste des Agences")}} @endsection
+    {{__("Liste des Kiosques")}} @endsection
 
 @section('content')
     @component('components.breadcrumb')
-        @slot('li_1') {{__("Agences")}} @endslot
-        @slot('title') {{__("Liste des Agences")}} @endslot
+        @slot('li_1') {{__("Kiosques")}} @endslot
+        @slot('title') {{__("Liste des Kiosques")}} @endslot
     @endcomponent
 
     <div class="card">
@@ -30,7 +30,7 @@
             <table class="table table-hover table-responsive table-striped align-middle mb-0">
                 <thead>
                 <th scope="col">#</th>
-                <th scope="col">{{__("Nom de l'agence")}}</th>
+                <th scope="col">{{__("Nom du kiosque")}}</th>
                 <th scope="col">{{__("Adresse")}}</th>
                 <th scope="col">{{__("Actions")}}</th>
                 </thead>
@@ -40,7 +40,7 @@
 
                         <td class="fw-medium">{{$i+1}}</td>
                         <td>
-                            <a href="#" class="btn btn-link fw-medium">
+                            <a href="{{route("companies.show", ["company_id" => $companies[$i]->id])}}" class="btn btn-link fw-medium">
                                 {{$companies[$i]->name}}
                             </a>
                         </td>

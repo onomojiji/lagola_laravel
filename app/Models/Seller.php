@@ -20,4 +20,9 @@ class Seller extends Model
     {
         return $this->belongsTo(Company::class);
     }
+
+    public function commands(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Command::class);
+    }
 }

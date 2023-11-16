@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Company;
+use App\Models\CompanyHasProduct;
 use App\Models\Product;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -54,5 +57,50 @@ class ProductController extends Controller
 
         // return back with succes message
         return back()->with("success", "Produit créé avec succès...");
+    }
+
+    // get ravitaillement create page
+    public function getInCompany(){
+        // get all company list
+        $companies = Company::orderBy("name")->get();
+
+        // get all product
+        $products = Product::orderBy("name")->get();
+
+        return view(
+            "products.getincompany", [
+                "companies" => $companies,
+                "products" => $products
+        ]);
+    }
+
+    public function addInCompany(Request $request){
+
+        $request->validate([
+            "product_id" => "required",
+            "company_id" => "required",
+            "quantity" => "required"
+        ]);
+
+        $companyHasProduct = CompanyHasProduct::where("company_id", $request->company_id)->where("product_id", $request->product_id)->first();
+
+        if ($companyHasProduct == null){
+            // store the intrance in the database
+            CompanyHasProduct::create([
+                "company_id" => $request->company_id,
+                "product_id" => $request->product_id,
+                "date" => Carbon::now(),
+                "quantity" => $request->quantity,
+            ]);
+        }else{
+            $quantity = $companyHasProduct->quantity;
+            $companyHasProduct->update([
+                "date" => Carbon::now(),
+                "quantity" => $quantity + $request->quantity,
+            ]);
+        }
+
+        return back()->with("success", "Kiosque ravitaillé avec succès...");
+
     }
 }

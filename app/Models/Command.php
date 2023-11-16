@@ -9,7 +9,7 @@ class Command extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["seller_id", "product_id", "date", "quantity"];
+    protected $fillable = ["seller_id", "company_id", "product_id", "date", "quantity"];
 
     public function seller(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

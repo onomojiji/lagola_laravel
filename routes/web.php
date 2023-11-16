@@ -35,6 +35,8 @@ Route::middleware(["auth"])->prefix('admin')->group(function (){
         Route::get("companies/edit/{company_id}", 'edit')->name("companies.edit");
         Route::post("companies/store", 'store')->name("companies.store");
         Route::post("companies/update/{company_id}", 'update')->name("companies.update");
+
+        Route::get("companies/show/{company_id}", 'show')->name("companies.show");
     });
 
     // sellers routes
@@ -55,13 +57,16 @@ Route::middleware(["auth"])->prefix('admin')->group(function (){
         Route::post("catalog/categories/update/{category_id}", 'update')->name("categories.update");
     });
 
-    // categories routes
+    // products routes
     Route::controller(\App\Http\Controllers\Admin\ProductController::class)->group(function (){
         Route::get("catalog/products/list", 'index')->name("products.index");
         Route::get("catalog/products/create", 'create')->name("products.create");
         Route::get("catalog/products/edit/{product_id}", 'edit')->name("products.edit");
         Route::post("catalog/products/store", 'store')->name("products.store");
         Route::post("catalog/products/update/{product_id}", 'update')->name("products.update");
+
+        Route::get("catalog/products/addInCompany", 'getInCompany')->name("products.getInCompany");
+        Route::post("catalog/products/addInCompany", 'addInCompany')->name("products.addInCompany");
     });
 
 });
