@@ -8,7 +8,7 @@
 @section('content')
 @component('components.breadcrumb')
 @slot('li_1') Dashboards @endslot
-@slot('title') Dashboard @endslot
+@slot('title') {{ \Carbon\Carbon::now()->monthName. " - ". \Carbon\Carbon::now()->year }} @endslot
 @endcomponent
 
     <div class="row">
@@ -102,6 +102,28 @@
         </div><!-- end col -->
     </div><!-- end row -->
 
+    <div class="row">
+        <div class="card">
+            <div class="card-header">
+                <p class="h6">Tendance des ventes du mois en cours</p>
+            </div>
+            <div class="card-body my-0 py-0">
+                <div class="w-100 h-auto" id="gains" style="height: 300%"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="card">
+            <div class="card-header">
+                <p class="h6">Tendance du nombre de produits vendus su mois en cours</p>
+            </div>
+            <div class="card-body my-0 py-0">
+                <div class="w-100 h-auto" id="nbProducts" style="height: 300%"></div>
+            </div>
+        </div>
+    </div>
+
 @endsection
 @section('script')
 <!-- apexcharts -->
@@ -111,4 +133,54 @@
 <!-- dashboard init -->
 <script src="{{ URL::asset('/assets/js/pages/dashboard-ecommerce.init.js') }}"></script>
 <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<script type="text/javascript">
+    // Initialize the echarts instance based on the prepared dom
+    var nbProducts = echarts.init(document.getElementById('nbProducts'));
+
+    // Specify the configuration items and data for the chart
+    var option = {
+        tooltip: {},
+        xAxis: {
+            data: ['Shirts', 'Cardigans', 'Chiffons', 'Pants', 'Heels', 'Socks','Shirts', 'Cardigans', 'Chiffons', 'Pants', 'Heels', 'Socks',,'Shirts', 'Cardigans', 'Chiffons', 'Pants', 'Heels', 'Socks',,'Shirts', 'Cardigans', 'Chiffons', 'Pants', 'Heels', 'Socks']
+        },
+        yAxis: {},
+        series: [
+            {
+                name: 'Ventes en FCFA',
+                type: 'bar',
+                data: [5, 20, 36, 10, 10, 20,5, 20, 36, 10, 10, 20,5, 20, 36, 10, 10, 20,5, 20, 36, 10, 10, 20,5, 20, 36, 10, 10, 20]
+            }
+        ]
+    };
+
+    // Display the chart using the configuration items and data just specified.
+    nbProducts.setOption(option);
+
+    ///////////////////////////////////////////////////////////////////////////////////
+
+    var gains = echarts.init(document.getElementById('gains'));
+
+    var option = {
+        tooltip: {},
+        xAxis: {
+            data: ['A', 'B', 'C', 'D', 'E','A', 'B', 'C', 'D', 'E','A', 'B', 'C', 'D', 'E','A', 'B', 'C', 'D', 'E','A', 'B', 'C', 'D', 'E',]
+        },
+        yAxis: {},
+        series: [
+            {
+                data: [10, 22, 28, 43, 49,10, 22, 28, 43, 49,10, 22, 28, 43, 49,10, 22, 28, 43, 49,10, 22, 28, 43, 49,],
+                type: 'line',
+                stack: 'x',
+                areaStyle: {
+                    color: '#41ef31',
+                }
+            },
+        ]
+    };
+
+    gains.setOption(option);
+
+
+</script>
 @endsection
