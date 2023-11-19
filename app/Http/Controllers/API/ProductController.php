@@ -144,4 +144,38 @@ class ProductController extends Controller
 
     }
 
+    public function gethistory(){
+        // aujourd'hui
+        $today = date("Y-m-d", strtotime(\Illuminate\Support\Carbon::now()));
+
+        // le vendeur connecté
+        $seller = Auth::user()->seller;
+
+        // le kiosque connecté
+        $company = $seller->company;
+
+        $history = [];
+
+        // Toutes les ventes d'aujourd'hui
+        $allTodayCommands = Command::where("seller_id", $seller->id)
+            ->where("company_id", $company->id)
+            ->where("date", $today)
+            ->orderBy("created_at", "desc")
+            ->get();
+
+        foreach ($allTodayCommands as $command){
+            $history[] = [
+                "avatar" => $command->product->avatar,
+                "name" => $command->product->name,
+                "quantity" => $command->quantity,
+            ];
+        }
+
+        return response()->json([
+            "status" => "success",
+            "message" => "historique des commandes journalières",
+            "commandes" => $history
+        ]);
+    }
+
 }

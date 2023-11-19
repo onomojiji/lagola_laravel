@@ -45,6 +45,7 @@ Route::middleware(["auth:sanctum"])->prefix("/sellers/")->group(function (){
        Route::post("getInCompany", "inputProduct")->name("products.gestImCompany");
        Route::post("sellProduct", "sellProduct")->name("products.sell");
        Route::get("getnewsell", "getnewsell")->name('product.getnewsell');
+        Route::get("gethistory", "gethistory")->name('product.gethistory');
     });
 
 });
