@@ -22,9 +22,9 @@ class UserSeeder extends Seeder
               'password' => 'lagolapass',
           ],
             [
-                "name" => "Amina de mbankomo",
-                "phone" => '676777879',
-                "password" => 'aminadembankomo'
+                "name" => "MBEYA LINE",
+                "phone" => '696872444',
+                "password" => 'AdminMbeyaLine'
             ],
         ];
 
@@ -37,24 +37,6 @@ class UserSeeder extends Seeder
                 'phone' => $users[$i]['phone'],
                 'password' => Hash::make($users[$i]['password']),
                 'admin' => $isAdmin
-            ]);
-        }
-
-        $sellers = [
-            [
-                "user_id" => 2,
-                "company_id" => 1,
-                "cni" => "09835456",
-                "sexe" => "F"
-            ],
-        ];
-
-        foreach ($sellers as $seller){
-            Seller::create([
-                "user_id" => $seller["user_id"],
-                "company_id" => $seller["company_id"],
-                "cni" => $seller["cni"],
-                "sexe" => $seller["sexe"],
             ]);
         }
     }

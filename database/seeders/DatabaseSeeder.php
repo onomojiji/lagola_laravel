@@ -23,13 +23,9 @@ class DatabaseSeeder extends Seeder
 
         $companies = [
           [
-              "name" => "Nlongkak",
-              "address" => "à coté de Niki Nlongkak"
+              "name" => "LAGOLA 1",
+              "address" => ""
           ],
-          [
-              "name" => "Nkolbisson",
-              "address" => "En face de Total Nkolbisson"
-          ]
         ];
 
         foreach ($companies as $company){
@@ -41,13 +37,9 @@ class DatabaseSeeder extends Seeder
 
         $categories = [
           "Aucune",
-          "Salades",
-          "Pains",
-          "Biscuits",
-          "Chocolats",
-          "Crèmes",
-          "Tacos",
-          "Burgers"
+          "Viennoiserie",
+          "Boissons",
+          "Divers",
         ];
 
         foreach ($categories as $category){

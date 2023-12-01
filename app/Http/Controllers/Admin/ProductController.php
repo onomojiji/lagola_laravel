@@ -9,6 +9,7 @@ use App\Models\CompanyHasProduct;
 use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -47,9 +48,24 @@ class ProductController extends Controller
             "category_id" => "required"
         ]);
 
+        // verify if $request->avatar is set
+        if ($request->avatar != null){ // if avatar is set
+            $avatar = $request->file("avatar");
+            $title = Str::remove([' ','.', ',', '?', ';', ':', '!', '§', '%', '*', 'µ', '$', '£', '^', '¨', '"', "/", "'", "\\"], $request->name);
+            $extension = $avatar->extension();
+
+            // création du nom du fichier image
+            $avatarName =  $title. '.' . $extension;
+
+            // sauvegarde du fichier image dans le dossier
+            $path = $request->file("avatar")->storeAs('images/avatars/products/', $avatarName, "real_public");
+        }else{
+            $path = null;
+        }
+
         // write data in database
         Product::create([
-            "avatar" => $request->avatar,
+            "avatar" => $path,
             "name" => $request->name,
             "price" => $request->price,
             "category_id" => $request->category_id

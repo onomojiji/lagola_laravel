@@ -41,13 +41,16 @@
                     </div>
                 @endif
                 <div class="row">
-                    <div class="col-lg-4">
-                        <div class="avatar-xl mx-auto">
-                            <input type="file" class="filepond filepond-input-circle w-lg" name="avatar"
-                                   accept="image/png, image/jpeg, image/gif">
+                    <div class="col-lg-12">
+                        <div class="row mb-3">
+                            <div class="col-md-12 form-group">
+                                <label for="name">{{__("Image de la catégorie")}}</label>
+                                <div class="input-group">
+                                    <input type="file" class="form-control" id="avatar" name="avatar" accept="image/png, image/jpeg, image/gif">
+                                    <label class="input-group-text" for="avatar">Importer</label>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-8">
                         <div class="row mb-3">
                             <div class="col-md-12 form-group">
                                 <label for="name">{{__("Nom")}}</label>

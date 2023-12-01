@@ -43,7 +43,7 @@
                         <td>
                             <img class="header-profile-user"
                                  @if($categories[$i]->avatar != null)
-                                     src="{{$categories[$i]->avatar}}"
+                                     src="{{asset($categories[$i]->avatar)}}"
                                 @else
                                      src="{{asset("images/logo_lagola.png")}}"
                                 @endif>

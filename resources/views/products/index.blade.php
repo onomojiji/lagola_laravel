@@ -44,7 +44,7 @@
                         <td>
                             <img class="header-profile-user"
                                  @if($products[$i]["avatar"] != null)
-                                     src="{{$products[$i]["avatar"]}}"
+                                     src="{{asset($products[$i]["avatar"])}}"
                                  @else
                                      src="{{asset("images/logo_lagola.png")}}"
                                 @endif>

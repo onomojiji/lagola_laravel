@@ -34,17 +34,15 @@ class CategoryController extends Controller
 
         // verify if $request->avatar is set
         if ($request->avatar != null){ // if avatar is set
-            $avatar = explode(",", $request->avatar);
+            $avatar = $request->file("avatar");
             $title = Str::remove([' ','.', ',', '?', ';', ':', '!', '§', '%', '*', 'µ', '$', '£', '^', '¨', '"', "/", "'", "\\"], $request->name);
-            $extension = Str::remove(['"'],explode(".",explode(":", $avatar[1])[1])[1]);
-            $stream = Str::remove(['"', "}"], explode(":", $avatar[5])[1]);
-            //dd($stream);
+            $extension = $avatar->extension();
 
             // création du nom du fichier image
             $avatarName =  $title. '.' . $extension;
 
             // sauvegarde du fichier image dans le dossier
-            //$path = $request->file("avatar")->storeAs('public/images/avatars/categories/' . $avatarName);
+            $path = $request->file("avatar")->storeAs('images/avatars/categories/', $avatarName, "real_public");
         }else{
             $path = null;
         }
