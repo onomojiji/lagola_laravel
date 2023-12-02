@@ -58,7 +58,7 @@ class ProductController extends Controller
             $avatarName =  $title. '.' . $extension;
 
             // sauvegarde du fichier image dans le dossier
-            $path = $request->file("avatar")->storeAs('images/avatars/products/', $avatarName, "real_public");
+            $path = $request->file("avatar")->storeAs('images/avatars/products', $avatarName, "real_public");
         }else{
             $path = null;
         }
