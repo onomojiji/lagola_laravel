@@ -73,9 +73,7 @@ class CompanyController extends Controller
             $companyCommands[] = [
                 "name" => $command->product->name,
                 "quantity" => $command->quantity,
-                "seller" => $command->seller->user->name,
-                "date" => date("H:i:s | d/m/Y"),
-                "category" => $command->product->category->name,
+                "date" => date("H:i:s | d/m/Y", strtotime($command->created_at)),"category" => $command->product->category->name,
                 "price" => number_format(num: $command->product->price * $command->quantity, decimals: 0, decimal_separator: ",", thousands_separator: " ")
             ];
         }

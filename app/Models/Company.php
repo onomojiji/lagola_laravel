@@ -20,4 +20,9 @@ class Company extends Model
     {
         return $this->hasMany(CompanyHasProduct::class);
     }
+
+    public function pertes(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Perte::class);
+    }
 }

@@ -69,6 +69,11 @@ Route::middleware(["auth"])->prefix('admin')->group(function (){
         Route::post("catalog/products/addInCompany", 'addInCompany')->name("products.addInCompany");
     });
 
+    // pertes routes
+    Route::controller(\App\Http\Controllers\Admin\PerteController::class)->group(function (){
+       Route::get("company/{company_id}/product/{product_id}/pertes", "perte")->name("pertes.store");
+    });
+
 });
 
 require __DIR__.'/auth.php';

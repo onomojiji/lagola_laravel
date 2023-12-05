@@ -23,6 +23,7 @@ class ProductController extends Controller
               "name" => $product->name,
                 "avatar" => $product->avatar,
                 "price" => number_format($product->price, "0", "", " ")." Fcfa",
+                "purchase_price" => number_format($product->purchase_price, "0", "", " ")." Fcfa",
                 "category" => $product->category->name
             ];
         }
@@ -38,6 +39,23 @@ class ProductController extends Controller
         return view("products.create", ["categories" => $categories]);
     }
 
+    // get product view
+    public function edit(int $id){
+
+        // get product
+        $product = Product::find($id);
+
+        // get all categories order by name
+        $categories = Category::orderBy("name")->get();
+
+        return view("products.edit",
+            [
+                "categories" => $categories,
+                "product" => $product
+            ]
+        );
+    }
+
     // store a new product on database
     public function store(Request $request){
         // validate all requests content
@@ -45,20 +63,13 @@ class ProductController extends Controller
             "avatar" => "",
             "name" => "required|unique:products|min:3",
             "price" => "required|min:2",
+            "purchase_price" => "required|min:2",
             "category_id" => "required"
         ]);
 
         // verify if $request->avatar is set
         if ($request->avatar != null){ // if avatar is set
-            $avatar = $request->file("avatar");
-            $title = Str::remove([' ','.', ',', '?', ';', ':', '!', '§', '%', '*', 'µ', '$', '£', '^', '¨', '"', "/", "'", "\\"], $request->name);
-            $extension = $avatar->extension();
-
-            // création du nom du fichier image
-            $avatarName =  $title. '.' . $extension;
-
-            // sauvegarde du fichier image dans le dossier
-            $path = $request->file("avatar")->storeAs('images/avatars/products', $avatarName, "real_public");
+            $path = $this->saveFile($request);
         }else{
             $path = null;
         }
@@ -68,11 +79,54 @@ class ProductController extends Controller
             "avatar" => $path,
             "name" => $request->name,
             "price" => $request->price,
+            "purchase_price" => $request->purchase_price,
             "category_id" => $request->category_id
         ]);
 
         // return back with succes message
         return back()->with("success", "Produit créé avec succès...");
+    }
+
+    // update product imformations
+    public function update(Request $request ,int $id){
+        // get product
+        $product = Product::find($id);
+
+        // request validate
+        $request->validate([
+            "avatar" => "",
+            "name" => "required|min:3",
+            "price" => "required|min:2",
+            "purchase_price" => "required|min:2",
+            "category_id" => "required"
+        ]);
+
+        // verify if $request->avatar is set
+        if ($request->avatar != null){ // if avatar is set
+            $path = $this->saveFile($request);
+
+            // write data in database
+            $product->update([
+                "avatar" => $path,
+                "name" => $request->name,
+                "price" => $request->price,
+                "purchase_price" => $request->purchase_price,
+                "category_id" => $request->category_id
+            ]);
+
+        }else{
+            $path = null;
+            // write data in database
+            $product->update([
+                "name" => $request->name,
+                "price" => $request->price,
+                "purchase_price" => $request->purchase_price,
+                "category_id" => $request->category_id
+            ]);
+        }
+
+        // return back with succes message
+        return back()->with("success", "Produit mis à jour avec succès...");
     }
 
     // get ravitaillement create page
@@ -118,5 +172,23 @@ class ProductController extends Controller
 
         return back()->with("success", "Kiosque ravitaillé avec succès...");
 
+    }
+
+    /**
+     * @param Request $request
+     * @return false|string
+     */
+    public function saveFile(Request $request): string|false
+    {
+        $avatar = $request->file("avatar");
+        $title = Str::remove([' ', '.', ',', '?', ';', ':', '!', '§', '%', '*', 'µ', '$', '£', '^', '¨', '"', "/", "'", "\\"], $request->name);
+        $extension = $avatar->extension();
+
+        // création du nom du fichier image
+        $avatarName = $title . '.' . $extension;
+
+        // sauvegarde du fichier image dans le dossier
+        $path = $request->file("avatar")->storeAs('images/avatars/products', $avatarName, "real_public");
+        return $path;
     }
 }

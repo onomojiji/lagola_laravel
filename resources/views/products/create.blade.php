@@ -60,9 +60,18 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-12 form-group">
-                                <label for="address">{{__("Prix")}}</label>
+                                <label for="address">{{__("Prix d'achat")}}</label>
                                 <div class="input-group">
-                                    <input type="number" class="form-control" placeholder="{{__("Tapez le prix du produit")}}" name="price" min="0" required>
+                                    <input type="number" class="form-control" placeholder="{{__("Tapez le prix d'achat du produit")}}" name="purchase_price" min="0" required>
+                                    <span class="input-group-text">Fcfa</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-12 form-group">
+                                <label for="address">{{__("Prix de vente")}}</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" placeholder="{{__("Tapez le prix de vente du produit")}}" name="price" min="0" required>
                                     <span class="input-group-text">Fcfa</span>
                                 </div>
                             </div>

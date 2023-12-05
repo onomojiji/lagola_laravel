@@ -9,7 +9,7 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["avatar", "name", "price", "category_id"];
+    protected $fillable = ["avatar", "name", "price", "category_id", "purchase_price"];
 
     public function category(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
@@ -24,5 +24,10 @@ class Product extends Model
     public function companyProducts(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(CompanyHasProduct::class);
+    }
+
+    public function pertes(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Perte::class);
     }
 }

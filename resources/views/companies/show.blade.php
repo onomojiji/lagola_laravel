@@ -10,7 +10,7 @@
 
     <div class="row">
 
-        <div class="col-xxl-6">
+        <div class="col-12">
             <div class="card">
                 <div class="card-body">
 
@@ -53,12 +53,10 @@
                                 <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Nom du produit</th>
-                                    <th scope="col">Quantité vendue</th>
-                                    <th scope="col">Montant total</th>
-                                    <th scope="col">Catégorie</th>
-                                    <th scope="col">Dernière vente</th>
-                                    <th scope="col">Vendeuse</th>
+                                    <th scope="col">Nom</th>
+                                    <th scope="col">Qté</th>
+                                    <th scope="col">Montant</th>
+                                    <th scope="col">Date</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -68,9 +66,7 @@
                                         <td>{{$companyCommands[$i]["name"]}}</td>
                                         <td class="text-primary fw-bold">{{$companyCommands[$i]["quantity"]}}</td>
                                         <td class="fw-bold">{{$companyCommands[$i]["price"]." FCFA"}}</td>
-                                        <td>{{$companyCommands[$i]["category"]}}</td>
                                         <td>{{$companyCommands[$i]["date"]}}</td>
-                                        <td>{{$companyCommands[$i]["seller"]}}</td>
                                     </tr>
                                 @endfor
                             </table>
@@ -81,11 +77,10 @@
                                 <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Nom du produit</th>
-                                    <th scope="col">Prix unitaire</th>
-                                    <th scope="col">Quantité en stock</th>
-                                    <th scope="col">Catégorie</th>
-                                    <th scope="col">Dernière mise à jour</th>
+                                    <th scope="col">Nom</th>
+                                    <th scope="col">Prix</th>
+                                    <th scope="col">Qté</th>
+                                    <th scope="col">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -95,8 +90,26 @@
                                         <td>{{$companyProducts[$i]["name"]}}</td>
                                         <td class="fw-bold">{{$companyProducts[$i]["price"]." FCFA"}}</td>
                                         <td class="text-primary fw-bold">{{$companyProducts[$i]["quantity"]}}</td>
-                                        <td>{{$companyProducts[$i]["category"]}}</td>
-                                        <td>{{$companyProducts[$i]["date"]}}</td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <a href="#"
+                                                   class="btn btn-light btn-icon" id="dropdownMenuLink15"
+                                                   data-bs-toggle="dropdown" aria-expanded="true">
+                                                    <i class="ri-equalizer-fill"></i>
+                                                </a>
+                                                <ul class="dropdown-menu dropdown-menu-end"
+                                                    aria-labelledby="dropdownMenuLink15">
+                                                    <li>
+                                                        <a class="dropdown-item text-danger"
+                                                           href="{{ route("pertes.store", ["company_id" => $companyProducts[$i]["product_id"], "product_id" => $companyProducts[$i]["product_id"]]) }}">
+                                                            <i class="ri-delete-bin-fill me-2 align-middle text-danger"></i>
+                                                            Vider
+                                                        </a>
+                                                    </li>
+                                                    <li class="dropdown-divider"></li>
+                                                </ul>
+                                            </div>
+                                        </td>
 
                                     </tr>
                                 @endfor

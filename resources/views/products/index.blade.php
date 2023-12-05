@@ -32,7 +32,8 @@
                 <th scope="col">#</th>
                 <th>{{__("Avatar")}}</th>
                 <th scope="col">{{__("Nom du produit")}}</th>
-                <th scope="col">{{__("Prix")}}</th>
+                <th scope="col">{{__("Prix d'achat")}}</th>
+                <th scope="col">{{__("Prix de vente")}}</th>
                 <th scope="col">{{__("Catégorie")}}</th>
                 </thead>
                 <tbody>
@@ -51,10 +52,11 @@
                         </td>
 
                         <td>
-                            <a href="#" class="btn btn-link fw-medium">
+                            <a href="{{ route("products.edit", $products[$i]["id"]) }}" class="btn btn-link fw-medium">
                                 {{$products[$i]["name"]}}
                             </a>
                         </td>
+                        <td>{{$products[$i]["purchase_price"]}}</td>
                         <td>{{$products[$i]["price"]}}</td>
 
                         <td>{{$products[$i]["category"]}}</td>
