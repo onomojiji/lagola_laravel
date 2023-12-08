@@ -101,7 +101,7 @@
                                                     aria-labelledby="dropdownMenuLink15">
                                                     <li>
                                                         <a class="dropdown-item text-danger"
-                                                           href="{{ route("pertes.store", ["company_id" => $companyProducts[$i]["product_id"], "product_id" => $companyProducts[$i]["product_id"]]) }}">
+                                                           href="{{ route("pertes.store", ["company_id" => $companyProducts[$i]["company_id"], "product_id" => $companyProducts[$i]["product_id"]]) }}">
                                                             <i class="ri-delete-bin-fill me-2 align-middle text-danger"></i>
                                                             Vider
                                                         </a>

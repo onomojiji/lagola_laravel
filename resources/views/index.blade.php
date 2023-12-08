@@ -12,6 +12,12 @@
 @endcomponent
 
     <div class="row">
+        <div class="col-12">
+            <h5 class="text-decoration-underline mb-3 pb-1">Les ventes</h5>
+        </div>
+    </div>
+
+    <div class="row">
         <div class="col-xl-12">
             <div class="card crm-widget">
                 <div class="card-body p-0">
@@ -90,6 +96,274 @@
         </div><!-- end col -->
     </div><!-- end row -->
 
+    <div class="row">
+        <div class="col-12">
+            <h5 class="text-decoration-underline mb-3 pb-1">Les pertes financières</h5>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-xl-3 col-md-6">
+            <!-- card -->
+            <div class="card card-animate bg-danger">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <p class="text-uppercase fw-medium text-white-50 mb-0">TOTALES</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-end justify-content-between mt-4">
+                        <div>
+                            <h4 class="fs-22 fw-semibold ff-secondary mb-4 text-white">{{ $totalFinancePertes }}</h4>
+
+                        </div>
+                    </div>
+                </div><!-- end card body -->
+            </div><!-- end card -->
+        </div><!-- end col -->
+
+        <div class="col-xl-3 col-md-6">
+            <!-- card -->
+            <div class="card card-animate">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <p class="text-uppercase fw-medium text-muted mb-0">ANNUELLES</p>
+                        </div>
+                        <div class="flex-shrink-0">
+                            <h5 class="text-success fs-14 mb-0">
+                                <i class="ri-arrow-right-up-line fs-13 align-middle"></i> +100 %
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-end justify-content-between mt-4">
+                        <div>
+                            <h4 class="fs-22 fw-semibold ff-secondary mb-4"> {{ $yearFinancePertes }} </h4>
+                        </div>
+                    </div>
+                </div><!-- end card body -->
+            </div><!-- end card -->
+        </div><!-- end col -->
+
+        <div class="col-xl-3 col-md-6">
+            <!-- card -->
+            <div class="card card-animate">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <p class="text-uppercase fw-medium text-muted mb-0">MENSUELLES</p>
+                        </div>
+                        <div class="flex-shrink-0">
+                            <h5 class="text-success fs-14 mb-0">
+                                <i class="ri-arrow-right-up-line fs-13 align-middle"></i> +100 %
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-end justify-content-between mt-4">
+                        <div>
+                            <h4 class="fs-22 fw-semibold ff-secondary mb-4"> {{ $monthFinancePertes }} </h4>
+                        </div>
+                    </div>
+                </div><!-- end card body -->
+            </div><!-- end card -->
+        </div><!-- end col -->
+
+        <div class="col-xl-3 col-md-6">
+            <!-- card -->
+            <div class="card card-animate">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <p class="text-uppercase fw-medium text-muted mb-0">Journalière</p>
+                        </div>
+                        <div class="flex-shrink-0">
+                            <h5 class="text-muted fs-14 mb-0">
+                                +2.35 %
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-end justify-content-between mt-4">
+                        <div>
+                            <h4 class="fs-22 fw-semibold ff-secondary mb-4"> {{ $dayFinancePertes }} </h4>
+                        </div>
+                    </div>
+                </div><!-- end card body -->
+            </div><!-- end card -->
+        </div><!-- end col -->
+    </div> <!-- end row-->
+
+    <div class="row">
+        <div class="col-12">
+            <h5 class="text-decoration-underline mb-3 pb-1">Les pertes de produits</h5>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-xl-3 col-md-6">
+            <!-- card -->
+            <div class="card card-animate bg-danger">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <p class="text-uppercase fw-medium text-white-50 mb-0">TOTALES</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-end justify-content-between mt-4">
+                        <div>
+                            <h4 class="fs-22 fw-semibold ff-secondary mb-4 text-white">{{ $totalProductPertes }}</h4>
+
+                        </div>
+                    </div>
+                </div><!-- end card body -->
+            </div><!-- end card -->
+        </div><!-- end col -->
+
+        <div class="col-xl-3 col-md-6">
+            <!-- card -->
+            <div class="card card-animate">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <p class="text-uppercase fw-medium text-muted mb-0">ANNUELLES</p>
+                        </div>
+                        <div class="flex-shrink-0">
+                            <h5 class="text-success fs-14 mb-0">
+                                <i class="ri-arrow-right-up-line fs-13 align-middle"></i> +100 %
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-end justify-content-between mt-4">
+                        <div>
+                            <h4 class="fs-22 fw-semibold ff-secondary mb-4"> {{ $yearProductPertes }} </h4>
+                        </div>
+                    </div>
+                </div><!-- end card body -->
+            </div><!-- end card -->
+        </div><!-- end col -->
+
+        <div class="col-xl-3 col-md-6">
+            <!-- card -->
+            <div class="card card-animate">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <p class="text-uppercase fw-medium text-muted mb-0">MENSUELLES</p>
+                        </div>
+                        <div class="flex-shrink-0">
+                            <h5 class="text-success fs-14 mb-0">
+                                <i class="ri-arrow-right-up-line fs-13 align-middle"></i> +100 %
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-end justify-content-between mt-4">
+                        <div>
+                            <h4 class="fs-22 fw-semibold ff-secondary mb-4"> {{ $monthProductPertes }} </h4>
+                        </div>
+                    </div>
+                </div><!-- end card body -->
+            </div><!-- end card -->
+        </div><!-- end col -->
+
+        <div class="col-xl-3 col-md-6">
+            <!-- card -->
+            <div class="card card-animate">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <p class="text-uppercase fw-medium text-muted mb-0">Journalière</p>
+                        </div>
+                        <div class="flex-shrink-0">
+                            <h5 class="text-muted fs-14 mb-0">
+                                +2.35 %
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-end justify-content-between mt-4">
+                        <div>
+                            <h4 class="fs-22 fw-semibold ff-secondary mb-4"> {{ $dayProductPertes }} </h4>
+                        </div>
+                    </div>
+                </div><!-- end card body -->
+            </div><!-- end card -->
+        </div><!-- end col -->
+    </div> <!-- end row-->
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <p class="h6">Benefices vs pertes totales</p>
+                    <table class="table table-striped-columns">
+                        <thead>
+                            <tr>
+                                <th>Benefices</th>
+                                <th>Pertes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="fw-bold text-success">{{ number_format($totalBenefics, 0, ",", " ")." Fcfa" }}</td>
+                                <td class="fw-bold text-danger">{{ number_format($totalLosses, 0, ",", " ")." Fcfa" }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-body my-0 py-0">
+                    <div class="w-100 h-auto" id="all_benefics_losses" style="height: 300%; width: 100%"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <p class="h6">Benefices vs pertes annuelles</p>
+                    <table class="table table-striped-columns">
+                        <thead>
+                        <tr>
+                            <th>Benefices</th>
+                            <th>Pertes</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="fw-bold text-success">{{ number_format($annualBenefics, 0, ",", " ")." Fcfa" }}</td>
+                            <td class="fw-bold text-danger">{{ number_format($annualLosses, 0, ",", " ")." Fcfa" }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-body my-0 py-0">
+                    <div class="w-100 h-auto" id="annual_benefics_losses" style="height: 300%; width: 100%"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <p class="h6">Benefices vs pertes des 3 derniers mois</p>
+                    <table class="table table-striped-columns">
+                        <thead>
+                        <tr>
+                            <th>Benefices</th>
+                            <th>Pertes</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="fw-bold text-success">{{ number_format($lastThreeMonthBenefics, 0, ",", " ")." Fcfa" }}</td>
+                            <td class="fw-bold text-danger">{{ number_format($lastThreeMonthLosses, 0, ",", " ")." Fcfa" }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-body my-0 py-0">
+                    <div class="w-100 h-auto" id="last3months_benefics_losses" style="height: 300%; width: 100%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="row">
         <div class="card">
@@ -114,17 +388,6 @@
     </div>
 
 
-    <div class="row">
-        <div class="card">
-            <div class="card-header">
-                <p class="h6">Tendance des ventes du mois en cours</p>
-            </div>
-            <div class="card-body my-0 py-0">
-                <div class="w-100 h-auto" id="gains" style="height: 300%"></div>
-            </div>
-        </div>
-    </div>
-
 @endsection
 @section('script')
 <!-- apexcharts -->
@@ -141,6 +404,12 @@
     var productsQte = @json($productsQte);
     var productsNames2 = @json($productsNames2);
     var productsQte2 = @json($productsQte2);
+    var totalBenefics = @json($totalBenefics);
+    var totalLosses = @json($totalLosses);
+    var annualBenefics = @json($annualBenefics);
+    var annualLosses = @json($annualLosses);
+    var lastThreeMonthBenefics = @json($lastThreeMonthBenefics);
+    var lastThreeMonthLosses = @json($lastThreeMonthLosses);
 
     // Produits les plus vendus
     var produits_plus_vendus = echarts.init(document.getElementById('produits_plus_vendus'));
@@ -191,34 +460,83 @@
 
     ///////////////////////////////////////////////////////////////////////////////////
 
-    var gains = echarts.init(document.getElementById('gains'));
+    var all_benefics_losses = echarts.init(document.getElementById('all_benefics_losses'));
 
     var option = {
-        tooltip: {},
-        xAxis: {
-            data: [1,2,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]
-        },
-        yAxis: {},
         series: [
             {
-                data: [10, 22, 28, 43, 49,10, 22, 28, 43, 49,10, 22, 28, 43, 49,10, 22, 28, 43, 49,10, 22, 28, 43, 49,],
-                type: 'bar',
-                stack: 'x',
-                areaStyle: {
-                    color: '#41ef31',
-                }
-            },
+                type: 'pie',
+                color: [
+                    '#FF0000',
+                    '#00FF00',
+                ],
+                data: [
+                    {
+                        value: totalLosses,
+                        name: 'Pertes'
+                    },
+                    {
+                        value: totalBenefics,
+                        name: 'Benefices',
+                    },
+                ],
+            }
+        ]
+    }
+
+    all_benefics_losses.setOption(option)
+
+    var annual_benefics_losses = echarts.init(document.getElementById('annual_benefics_losses'));
+
+    var option = {
+        series: [
             {
-                data: [10, 22, 28, 43, 49,10, 22, 28, 43, 49,10, 22, 28, 43, 49,10, 22, 28, 43, 49,10, 22, 28, 43, 49,],
-                type: 'bar',
-                stack: 'x',
-            },
-        ],
-        dimensions: ['product', '2015', '2016', '2017']
-    };
+                type: 'pie',
+                color: [
+                    '#FF0000',
+                    '#00FF00',
+                ],
+                data: [
+                    {
+                        value: annualLosses,
+                        name: 'Pertes'
+                    },
+                    {
+                        value: annualBenefics,
+                        name: 'Benefices',
+                    },
+                ],
+            }
+        ]
+    }
 
-    gains.setOption(option);
+    annual_benefics_losses.setOption(option)
 
+    var last3months_benefics_losses = echarts.init(document.getElementById('last3months_benefics_losses'));
+
+    var option = {
+        series: [
+            {
+                type: 'pie',
+                color: [
+                    '#FF0000',
+                    '#00FF00',
+                ],
+                data: [
+                    {
+                        value: lastThreeMonthLosses,
+                        name: 'Pertes'
+                    },
+                    {
+                        value: lastThreeMonthBenefics,
+                        name: 'Benefices',
+                    },
+                ],
+            }
+        ]
+    }
+
+    last3months_benefics_losses.setOption(option)
 
 </script>
 @endsection

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Command;
 use App\Models\Company;
+use App\Models\Perte;
 use App\Models\Seller;
 use Carbon\Carbon;
 
@@ -17,9 +18,41 @@ class HomeController extends Controller
 
         $allTodayCommands = Command::whereDay("created_at", Carbon::now()->day)->get();
 
-        // dd($allTodayCommands);
+        // get pertes
+        $allPertes = Perte::all();
+        $allYearPertes = Perte::whereYear("created_at", Carbon::now()->year)->get();
+        $allMonthPertes = Perte::whereMonth("created_at", Carbon::now()->month)->get();
+        $allDayPertes = Perte::whereDay("created_at", Carbon::now()->day)->get();
 
-        # get all this month sell products, all money
+        $totalProductPertes = $totalFinancePertes = $monthProductPertes = $monthFinancePertes = $yearProductPertes = $yearFinancePertes = $dayProductPertes = $dayFinancePertes = 0 ;
+
+        // get total pertes
+        foreach ($allPertes as $perte){
+            $totalProductPertes += $perte->quantity;
+            $totalFinancePertes += $perte->quantity * $perte->product->purchase_price;
+        }
+
+        // get year pertes
+        foreach ($allYearPertes as $yearPerte){
+            $yearProductPertes += $yearPerte->quantity;
+            $yearFinancePertes += $yearPerte->quantity * $yearPerte->product->purchase_price;
+        }
+
+        // get month pertes
+        foreach ($allMonthPertes as $monthPerte){
+            $monthProductPertes += $monthPerte->quantity;
+            $monthFinancePertes += $monthPerte->quantity * $monthPerte->product->purchase_price;
+        }
+
+        // get today pertes
+        foreach ($allDayPertes as $dayPerte){
+            $dayProductPertes += $dayPerte->quantity;
+            $dayFinancePertes += $dayPerte->quantity * $dayPerte->product->purchase_price;
+        }
+
+        //dd($dayFinancePertes);
+
+        // get all this month sell products, all money
         $allThisMonthSellProducts = 0;
         $allThisMonthMoney = 0;
         foreach ($allThisMonthCommands as $thisMonthCommand){
@@ -38,9 +71,9 @@ class HomeController extends Controller
         $allProducts = [];
         $allProducts2 = [];
 
-        // to 10 of must sell products of all times
+        // top 10 of must sell products of all times
 
-        // first i get all times commands
+        // first I get all times commands
         $allTimesCommands = Command::all();
         foreach ($allTimesCommands as $command){
             // if product name is not in $allProduct array
@@ -56,7 +89,7 @@ class HomeController extends Controller
             }
         }
 
-        // tranforamation of allProducts array
+        // transformation of allProducts array
         for ($j=0; $j<count($allProducts)-1; $j+=2){
             $allProducts2[] = [$allProducts[$j], $allProducts[$j + 1]];
         }
@@ -69,13 +102,13 @@ class HomeController extends Controller
         // put all product name in array
         $productsNames = [];
         foreach ($allProducts3 as $item){
-            array_push($productsNames, $item[0]);
+            $productsNames[] = $item[0];
         }
 
         // put all product quantities in array
         $productsQte = [];
         foreach ($allProducts3 as $item){
-            array_push($productsQte, $item[1]);
+            $productsQte[] = $item[1];
         }
 
         if (count($productsNames) > 10){
@@ -104,8 +137,114 @@ class HomeController extends Controller
                 'productsNames' => $productsNames1,
                 'productsQte' => $productsQte1,
                 'productsNames2' => $productsNames2,
-                'productsQte2' => $productsQte2
+                'productsQte2' => $productsQte2,
+                'totalProductPertes' => number_format($totalProductPertes, 0, ',', " "),
+                'totalFinancePertes' => number_format($totalFinancePertes, 0, ',', " ")." Fcfa",
+                'yearProductPertes' => number_format($yearProductPertes, 0, ',', " "),
+                'yearFinancePertes' => number_format($yearFinancePertes, 0, ',', " ")." Fcfa",
+                'monthProductPertes' => number_format($monthProductPertes, 0, ',', " "),
+                'monthFinancePertes' => number_format($monthFinancePertes, 0, ',', " ")." Fcfa",
+                'dayProductPertes' => number_format($dayProductPertes, 0, ',', " "),
+                'dayFinancePertes' => number_format($dayFinancePertes, 0, ',', " ")." Fcfa",
+                "totalBenefics" => self::getTotalBenefices(),
+                "annualBenefics" => self::getAnnualBenefices(),
+                "lastThreeMonthBenefics" => self::getLastTreeMonthsBenefices(),
+                "totalLosses" => self::getTotalLosses(),
+                "annualLosses" => self::getAnnualLosses(),
+                "lastThreeMonthLosses" => self::getLastTreeMonthLosses(),
             ]
         );
     }
+
+    // get all times benfics
+    public static function getTotalBenefices(){
+        // all commands
+        $allCommands = Command::all();
+
+        // benefice total
+        $beneficeTotal = 0;
+
+        foreach ($allCommands as $command){
+            // benefice = prix vente - prix achat
+            $beneficeTotal += ($command->product->price - $command->product->purchase_price) * $command->quantity;
+        }
+
+        return $beneficeTotal;
+    }
+
+    // get annual benefics
+    public static function getAnnualBenefices(){
+        // this year commands
+        $yearCommamds = Command::whereYear("created_at", Carbon::now()->year)->get();
+
+        // year benefics
+        $beneficsYear = 0;
+
+        foreach ($yearCommamds as $commamd) {
+            $beneficsYear += ($commamd->product->price - $commamd->product->purchase_price) * $commamd->quantity;
+        }
+
+        return $beneficsYear;
+    }
+
+    // get last 3 year benefics
+    public static function getLastTreeMonthsBenefices (){
+        // last 3 months commands
+        $lastTreeMonthsCommands = Command::select('*')
+            ->whereBetween('created_at',
+                [Carbon::now()->subMonth(3), Carbon::now()]
+            )
+            ->get();
+
+        $lastTreeMonthsBenefics = 0;
+
+        foreach ($lastTreeMonthsCommands as $lastTreeMonthsCommand) {
+            $lastTreeMonthsBenefics += ($lastTreeMonthsCommand->product->price - $lastTreeMonthsCommand->product->purchase_price) * $lastTreeMonthsCommand->quantity;
+        }
+
+        return $lastTreeMonthsBenefics;
+    }
+
+    // get all losses
+    public static function getTotalLosses(){
+        // all losses
+        $allLosses = Perte::all();
+
+        $totalLosses = 0;
+
+        foreach ($allLosses as $allLoss) {
+            $totalLosses += $allLoss->product->purchase_price * $allLoss->quantity;
+        }
+
+        return $totalLosses;
+    }
+
+    // get annual losses
+    public static function getAnnualLosses(){
+        // annual losses
+        $annualeLosses = Perte::whereYear("created_at", Carbon::now()->year)->get();
+
+        $annualLosses = 0;
+
+        foreach ($annualeLosses as $annualLosse) {
+            $annualLosses += $annualLosse->product->purchase_price * $annualLosse->quantity;
+        }
+
+        return $annualLosses;
+    }
+
+    // get last tree month losses
+    public static function getLastTreeMonthLosses(){
+        // all losses
+        $lastTMLosses = Perte::all();
+
+        $lastThreeMonthLosses = 0;
+
+        foreach ($lastTMLosses as $lastTMLoss) {
+            $lastThreeMonthLosses += $lastTMLoss->product->purchase_price * $lastTMLoss->quantity;
+        }
+
+        return $lastThreeMonthLosses;
+    }
+
 }
